@@ -8,28 +8,53 @@
     body {
       background: white;
       font-family: Helvetica, Arial, sans-serif;
-      font-size: 12pt;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      height: 100vh;
-      margin: 0;
+      transition: background-color 0.8s ease;
     }
+
     .container {
-      margin-top: 20vh;
+      margin-top: calc(20vh + 110px);
+      text-align: center;
+      z-index: 2;
     }
-    a {
-      color: black;
-      text-decoration: none;
+
+    .logo-link img {
+      max-width: 97px;
+      transition: filter 0.8s ease;
+      z-index: 2;
+      position: relative;
     }
-    a:hover {
-      text-decoration: underline;
+
+    body.invert-bg {
+      background: black;
+    }
+
+    body.invert-bg .logo-link img {
+      filter: invert(1);
     }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const logo = document.querySelector('.logo-link');
+      logo.addEventListener('mouseenter', () => {
+        document.body.classList.add('invert-bg');
+      });
+      logo.addEventListener('mouseleave', () => {
+        document.body.classList.remove('invert-bg');
+      });
+    });
+  </script>
 </head>
 <body>
   <div class="container">
-    <a href="mailto:dave@groupthaw.com?subject=hello%20from%20the%20internet">Group Thaw</a>
+    <a class="logo-link" href="mailto:dave@groupthaw.com?subject=hello%20from%20the%20internet">
+      <img src="GroupThaw_Logo.png" alt="Group Thaw Logo">
+    </a>
   </div>
 </body>
 </html>
